@@ -15,7 +15,7 @@ public class CardHolderService
     public boolean validateCardHolder(CardHolderEntity cardHolder) {
         Optional<CardHolderEntity> existingCardHolder = cardHolderJpaRepository.findByPhoneNumber(cardHolder.getPhoneNumber());
 
-        System.out.println("from CardHOlder Service = "+existingCardHolder);
+        System.out.println("from CardHolder Service = "+existingCardHolder);
         // Compare the password if the user exists
         return existingCardHolder.isPresent() && existingCardHolder.get().getPassword().equals(cardHolder.getPassword());
     }

@@ -14,22 +14,27 @@ public class CreditCardController {
     private final CreditCardService creditCardService;
 
     public CreditCardController(CreditCardService creditCardService) {
+
         this.creditCardService = creditCardService;
     }
 
 
-//    @GetMapping("/getLimit")
-//    public Double getCardLimit(@RequestParam Double cardNumber) {
-//        System.out.println("cardNumber");
-////        return creditCardService.getAmountLimit(cardNumber);
-////
-//    }
-//
-//    @PostMapping("/login")
-//    public CreditCardEntity validateUser(@RequestBody CreditCardEntity creditCard)
-//    {
-//
-//    }
+       @GetMapping("/getLimit")
+       public Double getCardLimit(@RequestParam Long phoneNumber) {
+       System.out.println("phoneNumber -------- gett mapping"+phoneNumber);
+           return creditCardService.getAmountLimit(phoneNumber);
+    }
+
+
+
+    @GetMapping("/getCreditCardDetails")
+    public ResponseEntity<CreditCardEntity> getCreditCardDetails(@RequestParam Long phoneNumber) {
+        System.out.println("Fetching credit card details for phone number: " + phoneNumber);
+        CreditCardEntity creditCard = creditCardService.getCreditCardDetails(phoneNumber);
+
+        System.out.println(creditCard);
+        return ResponseEntity.ok(creditCard);
+    }
 
 
 
